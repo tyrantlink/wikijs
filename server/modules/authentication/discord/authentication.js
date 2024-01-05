@@ -15,7 +15,7 @@ module.exports = {
         clientSecret: conf.clientSecret,
         authorizationURL: 'https://discord.com/api/oauth2/authorize?prompt=none',
         callbackURL: conf.callbackURL,
-        scope: 'identify email guilds',
+        scope: 'identify guilds',
         passReqToCallback: true
       }, async (req, accessToken, refreshToken, profile, cb) => {
         try {
@@ -26,6 +26,7 @@ module.exports = {
             providerKey: req.params.strategy,
             profile: {
               ...profile,
+              email: `${profile.id}@requiring-emails-is.stupid`,
               displayName: profile.username,
               picture: `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png`
             }
