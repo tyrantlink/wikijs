@@ -675,16 +675,16 @@ module.exports = class User extends Model {
     const usr = await WIKI.models.users.query().findById(id)
     if (usr) {
       let usrData = {}
-      if (!_.isEmpty(email) && email !== usr.email) {
-        const dupUsr = await WIKI.models.users.query().select('id').where({
-          email,
-          providerKey: usr.providerKey
-        }).first()
-        if (dupUsr) {
-          throw new WIKI.Error.AuthAccountAlreadyExists()
-        }
-        usrData.email = _.toLower(email)
-      }
+      // if (!_.isEmpty(email) && email !== usr.email) {
+      //   const dupUsr = await WIKI.models.users.query().select('id').where({
+      //     email,
+      //     providerKey: usr.providerKey
+      //   }).first()
+      //   if (dupUsr) {
+      //     throw new WIKI.Error.AuthAccountAlreadyExists()
+      //   }
+      //   usrData.email = _.toLower(email)
+      // }
       if (!_.isEmpty(name) && name !== usr.name) {
         usrData.name = _.trim(name)
       }
